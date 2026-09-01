@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .calculator {
+            width: 300px;
+            margin: auto;
+        }
+
+        #display {
+            width: 280px;
+            height: 50px;
+            font-size: 25px;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 60px;
+            height: 50px;
+            font-size: 20px;
+            margin: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+        <h1>Calculator</h1>
+
+        <input type="text" id="display" readonly>
+
+        <br>
+
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="press('7')">7</button>
+        <button onclick="press('8')">8</button>
+        <button onclick="press('9')">9</button>
+
+        <br>
+
+        <button onclick="press('4')">4</button>
+        <button onclick="press('5')">5</button>
+        <button onclick="press('6')">6</button>
+        <button onclick="press('+')">+</button>
+
+        <br>
+
+        <button onclick="press('1')">1</button>
+        <button onclick="press('2')">2</button>
+        <button onclick="press('3')">3</button>
+        <button onclick="press('-')">-</button>
+
+        <br>
+
+        <button onclick="press('0')">0</button>
+        <button onclick="press('*')">*</button>
+        <button onclick="press('/')">/</button>
+        <button onclick="calculate()">=</button>
+    </div>
+
+    <script>
+        function press(value) {
+            document.getElementById("display").value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+
+        function calculate() {
+            let display = document.getElementById("display");
+
+            try {
+                if (display.value === "") {
+                    display.value = "Error";
+                    return;
+                }
+
+                if (display.value.includes("/0")) {
+                    display.value = "Error";
+                    return;
+                }
+
+                display.value = eval(display.value);
+            } catch {
+                display.value = "Error";
+            }
+        }
+    </script>
+
+</body>
+</html>
